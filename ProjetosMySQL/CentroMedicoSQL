@@ -3,25 +3,25 @@ USE 'CentroMedicoSQL';
 
 -- Patient table
 CREATE TABLE Paciente (
-    cpf INT,
+    id INT AUTO_INCREMENT,
     name VARCHAR(65),
     date_of_birth DATE,
     phone_number VARCHAR(15),
     email VARCHAR(65),
     address VARCHAR(30),
-    PRIMARY KEY (cpf)
+    PRIMARY KEY (id)
 );
 
 -- Doctor table
 CREATE TABLE Doutor (
-    crm INT,
+    id INT AUTO_INCREMENT,
     name VARCHAR(255),
     specialization VARCHAR(70),
     date_of_birth DATE,
     phone_number VARCHAR(15),
     email VARCHAR(35),
     address VARCHAR(25),
-    PRIMARY KEY (crm)
+    PRIMARY KEY (id)
 );
 
 -- Employee table
@@ -44,8 +44,8 @@ CREATE TABLE Vacinacao (
     vaccine_name VARCHAR(45),
     date_of_vaccination DATE,
     PRIMARY KEY (id),
-    FOREIGN KEY (patient_id) REFERENCES Patient(cpf),
-    FOREIGN KEY (doctor_id) REFERENCES Doctor(crm)
+    FOREIGN KEY (patient_id) REFERENCES Paciente(id),
+    FOREIGN KEY (doctor_id) REFERENCES Doutor(id)
 );
 
 -- Procedure table
@@ -56,6 +56,6 @@ CREATE TABLE Procedimento (
     service_name VARCHAR(35),
     date_of_procedure DATE,
     PRIMARY KEY (id),
-    FOREIGN KEY (patient_id) REFERENCES Patient(cpf),
-    FOREIGN KEY (doctor_id) REFERENCES Doctor(crm)
+    FOREIGN KEY (patient_id) REFERENCES Paciente(id),
+    FOREIGN KEY (doctor_id) REFERENCES Doutor(id)
 );
