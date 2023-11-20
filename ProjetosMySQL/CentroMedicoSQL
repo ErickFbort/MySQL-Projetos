@@ -5,11 +5,17 @@ USE 'CentroMedicoSQL';
 CREATE TABLE Paciente (
     id INT AUTO_INCREMENT,
     name VARCHAR(65),
+    PRIMARY KEY (id)
+);
+
+-- Andress table 
+CREATE TABLE Endereco (
+    andress_patient INT,
     date_of_birth DATE,
     phone_number VARCHAR(15),
     email VARCHAR(65),
     address VARCHAR(30),
-    PRIMARY KEY (id)
+    FOREIGN KEY (andress_patient) REFERENCES Paciente(id)
 );
 
 -- Doctor table
