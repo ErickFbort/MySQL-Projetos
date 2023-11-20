@@ -5,15 +5,17 @@ USE 'CentroMedicoSQL';
 CREATE TABLE Paciente (
     id INT AUTO_INCREMENT,
     name VARCHAR(65),
-    PRIMARY KEY (id)
+    date_of_birth DATE,
+    phone_number VARCHAR(15),
+    email VARCHAR(65),
+    PRIMARY KEY (id)  
 );
 
 -- Andress table 
 CREATE TABLE Endereco (
     andress_patient INT,
-    date_of_birth DATE,
-    phone_number VARCHAR(15),
-    email VARCHAR(65),
+    state VARCHAR(5),
+    city VARCHAR(20),
     address VARCHAR(30),
     FOREIGN KEY (andress_patient) REFERENCES Paciente(id)
 );
@@ -65,3 +67,58 @@ CREATE TABLE Procedimento (
     FOREIGN KEY (patient_id) REFERENCES Paciente(id),
     FOREIGN KEY (doctor_id) REFERENCES Doutor(id)
 );
+
+---------------------------------------------------------
+
+-- Insert Into Pacientes
+INSERT INTO Paciente (name, date_of_birth, phone_number, email)
+    VALUES
+    ('Tom Anderson', '2001-01-10', '+5678901234','tomanderson@gmail.com'),
+    ('Sophia White', '2000-12-20', '+6789012345', 'sophia.white@gmail.com');
+
+---------------------------------------------------------
+
+-- Insert Into Endereco
+
+INSERT INTO Endereco (andress_patient, state, city, address)
+    VALUES
+    (1, 'NY', 'New York', '123 Main St, New York, NY 10001'),
+    (2, 'NY', 'New York', '456 Elm St, New York, NY 10002');
+
+---------------------------------------------------------------
+
+-- Insert Into Doutores 
+
+INSERT INTO Doutor (name, specialization, date_of_birth, phone_number, email, address)
+    VALUES
+    ('John Doe', 'Cardiology', '1985-05-02', '+1234567890', 'john.doe@centromedico.com', '123 Cardiology St, New York, NY 10001'),
+    ('Jane Smith', 'Neurology', '1978-07-15', '+2345678901', 'jane.smith@centromedico.com', '456 Neurology St, New York, NY 10002');
+
+---------------------------------------------------------------
+
+-- Insert Into Funcionarios
+
+INSERT INTO Funcionario (name, job_title, date_of_birth, phone_number, email, address)
+    VALUES 
+    ('Emily Johnson', 'Receptionist', '1992-03-25', '+3456789012', 'emily.johnson@centromedico.com', '789 Reception St, New York, NY 10003'),
+    ('Michael Brown', 'Administrative Assistant', '1989-08-30', '+4567890123', 'michael.brown@centromedico.com', '876 Admin Assistant St, New York, NY 10004');
+
+---------------------------------------------------------------
+
+-- Insert Into 
+
+INSERT INTO Vacinacao (patient_id, doctor_id, vaccine_name, date_of_vaccination)
+    VALUES 
+    (1, 1, 'Pfizer', '2021-05-15'),
+    (2, 2, 'Moderna', '2021-06-20');
+
+---------------------------------------------------------------
+
+-- Insert Into Procedimentos
+
+INSERT INTO Procedimento (patient_id, doctor_id, service_name, date_of_procedure)
+    VALUES
+    (1, 1, 'Electrocardiogram', '2021-06-10'),
+    (2, 2, 'Magnetic Resonance Imaging', '2021-06-25');
+
+---------------------------------------------------------------
